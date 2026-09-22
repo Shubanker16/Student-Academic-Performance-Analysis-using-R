@@ -1,0 +1,384 @@
+---
+title: "Student Academic Performance Analysis Using R"
+author: "Shubanker Mondal"
+date: "2026-09-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Student Academic Performance Analysis Using R
+
+## 1. Introduction
+
+Student academic performance is influenced by several factors such as study hours, attendance, assignment performance, internal marks, and examination marks.
+
+This project analyzes student academic performance using R. The analysis focuses on study hours, attendance, assignment scores, internal marks, exam marks, and final scores.
+
+### Objectives
+
+- Create and analyze student academic performance data
+- Check the data
+- Perform statistical analysis
+- Create graphs
+- Study relationships between variables
+- Interpret the results
+- Identify important findings
+- Provide limitations, future scope, and conclusion
+
+## 2. Project Background
+
+Academic performance is an important factor in understanding students' learning outcomes.
+
+Data analysis can be used to identify patterns between study habits, attendance, assignments, and examination performance.
+
+R provides useful functions for creating datasets, calculating statistics, analyzing relationships, and creating visualizations.
+
+### Scope
+
+This project uses data from 20 sample students.
+
+The main variables are:
+
+- Age
+- Study Hours
+- Attendance
+- Assignment Score
+- Internal Marks
+- Exam Marks
+- Final Score
+
+## 3. Create Student Academic Performance Data
+
+```{r create-data}
+student <- data.frame(
+  Age = c(18,19,20,21,19,22,20,18,21,23,
+          19,20,22,18,21,20,19,23,22,20),
+
+  Study_Hours = c(2.5,3.0,4.0,5.0,3.5,4.5,2.0,5.5,4.0,3.0,
+                  4.5,3.5,5.0,6.0,4.0,2.5,5.5,6.5,3.5,4.5),
+
+  Attendance = c(72,78,85,92,80,88,65,95,87,75,
+                 90,82,94,98,86,70,93,96,79,89),
+
+  Assignment_Score = c(65,70,78,88,72,82,60,92,80,68,
+                       85,75,90,95,79,62,91,96,73,84),
+
+  Internal_Marks = c(58,62,70,82,65,75,55,85,72,60,
+                     80,68,84,90,74,57,86,92,64,78),
+
+  Exam_Marks = c(60,65,72,85,68,78,58,88,75,63,
+                 82,70,87,93,77,61,89,95,67,80),
+
+  Final_Score = c(61,66,73,85,69,79,58,89,76,64,
+                  83,71,88,94,78,62,90,96,68,81)
+)
+
+student
+```
+
+## 4. Dataset Description
+
+The dataset contains 20 student records.
+
+- Age: Age of the student
+- Study Hours: Average daily study hours
+- Attendance: Attendance percentage
+- Assignment Score: Assignment score
+- Internal Marks: Internal examination marks
+- Exam Marks: Examination marks
+- Final Score: Overall academic score
+
+## 5. Data Checking
+
+```{r data-checking}
+str(student)
+summary(student)
+```
+
+### Missing Values
+
+```{r missing-values}
+colSums(is.na(student))
+```
+
+### Duplicate Records
+
+```{r duplicate-records}
+sum(duplicated(student))
+```
+
+## 6. Statistical Analysis
+
+### Average Study Hours
+
+```{r mean-study}
+mean(student$Study_Hours)
+```
+
+### Average Attendance
+
+```{r mean-attendance}
+mean(student$Attendance)
+```
+
+### Average Assignment Score
+
+```{r mean-assignment}
+mean(student$Assignment_Score)
+```
+
+### Average Internal Marks
+
+```{r mean-internal}
+mean(student$Internal_Marks)
+```
+
+### Average Exam Marks
+
+```{r mean-exam}
+mean(student$Exam_Marks)
+```
+
+### Average Final Score
+
+```{r mean-final}
+mean(student$Final_Score)
+```
+
+## 7. Highest and Lowest Final Score
+
+### Maximum Final Score
+
+```{r max-final}
+max(student$Final_Score)
+```
+
+### Minimum Final Score
+
+```{r min-final}
+min(student$Final_Score)
+```
+
+## 8. Study Hours Analysis
+
+```{r study-hours-graph}
+barplot(
+  student$Study_Hours,
+  main = "Daily Study Hours of Students",
+  xlab = "Students",
+  ylab = "Study Hours",
+  names.arg = 1:nrow(student)
+)
+```
+
+## 9. Attendance Analysis
+
+```{r attendance-graph}
+barplot(
+  student$Attendance,
+  main = "Student Attendance Percentage",
+  xlab = "Students",
+  ylab = "Attendance (%)",
+  names.arg = 1:nrow(student)
+)
+```
+
+## 10. Assignment Score Analysis
+
+```{r assignment-graph}
+barplot(
+  student$Assignment_Score,
+  main = "Assignment Scores of Students",
+  xlab = "Students",
+  ylab = "Assignment Score",
+  names.arg = 1:nrow(student)
+)
+```
+
+## 11. Final Score Analysis
+
+```{r final-score-graph}
+barplot(
+  student$Final_Score,
+  main = "Final Scores of Students",
+  xlab = "Students",
+  ylab = "Final Score",
+  names.arg = 1:nrow(student)
+)
+```
+
+## 12. Relationship Analysis
+
+### Study Hours vs Final Score
+
+```{r study-final}
+plot(
+  student$Study_Hours,
+  student$Final_Score,
+  main = "Study Hours vs Final Score",
+  xlab = "Study Hours",
+  ylab = "Final Score",
+  pch = 19
+)
+```
+
+### Attendance vs Final Score
+
+```{r attendance-final}
+plot(
+  student$Attendance,
+  student$Final_Score,
+  main = "Attendance vs Final Score",
+  xlab = "Attendance (%)",
+  ylab = "Final Score",
+  pch = 19
+)
+```
+
+### Assignment Score vs Final Score
+
+```{r assignment-final}
+plot(
+  student$Assignment_Score,
+  student$Final_Score,
+  main = "Assignment Score vs Final Score",
+  xlab = "Assignment Score",
+  ylab = "Final Score",
+  pch = 19
+)
+```
+
+### Internal Marks vs Final Score
+
+```{r internal-final}
+plot(
+  student$Internal_Marks,
+  student$Final_Score,
+  main = "Internal Marks vs Final Score",
+  xlab = "Internal Marks",
+  ylab = "Final Score",
+  pch = 19
+)
+```
+
+## 13. Correlation Analysis
+
+### Study Hours and Final Score
+
+```{r correlation-study}
+cor(
+  student$Study_Hours,
+  student$Final_Score
+)
+```
+
+### Attendance and Final Score
+
+```{r correlation-attendance}
+cor(
+  student$Attendance,
+  student$Final_Score
+)
+```
+
+### Assignment Score and Final Score
+
+```{r correlation-assignment}
+cor(
+  student$Assignment_Score,
+  student$Final_Score
+)
+```
+
+### Internal Marks and Final Score
+
+```{r correlation-internal}
+cor(
+  student$Internal_Marks,
+  student$Final_Score
+)
+```
+
+### Exam Marks and Final Score
+
+```{r correlation-exam}
+cor(
+  student$Exam_Marks,
+  student$Final_Score
+)
+```
+
+## 14. Complete Correlation Matrix
+
+```{r correlation-matrix}
+cor(student)
+```
+
+## 15. Interpretation and Findings
+
+### Interpretation
+
+The analysis provides several observations:
+
+- Students have different daily study hours.
+- Attendance percentages vary among students.
+- Assignment scores differ between students.
+- Internal marks show variation.
+- Examination marks vary among students.
+- Final scores are different for different students.
+- Study hours can be compared with final academic scores.
+- Attendance can be compared with final academic scores.
+- Assignment performance can be compared with final scores.
+- Internal marks can be compared with final scores.
+
+These observations are based only on the sample dataset used in this project.
+
+### Key Findings
+
+- The dataset contains 20 student records.
+- There are 7 variables.
+- The dataset can be checked for missing values and duplicate records.
+- Students have different study patterns.
+- Attendance varies among students.
+- Assignment performance varies among students.
+- Internal and examination marks vary among students.
+- Final academic scores differ among students.
+- R can be used effectively for academic data analysis and visualization.
+
+## 16. Limitations
+
+This project uses a small sample of 20 students.
+
+The dataset does not include every factor that may influence academic performance.
+
+Factors such as teaching methods, learning environment, extracurricular activities, and personal study preferences are not included.
+
+Student performance can also change over time.
+
+## 17. Future Scope
+
+The project can be improved by adding:
+
+- More students
+- Multiple semesters
+- Subject-wise marks
+- Attendance for individual subjects
+- Assignment submission data
+- Study methods
+- Previous semester CGPA
+- Online learning hours
+- Extracurricular activities
+- Revision hours
+
+A larger dataset could provide more detailed academic analysis.
+
+## 18. Conclusion
+
+This project analyzed student academic performance using R.
+
+It demonstrated how to create an academic dataset, check data quality, calculate statistical measures, create graphs, analyze relationships, and calculate correlations.
+
+The project provides an understanding of student academic performance using data analysis and visualization.
